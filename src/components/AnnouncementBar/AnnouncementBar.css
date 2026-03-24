@@ -1,0 +1,40 @@
+.announcement-bar {
+  background: var(--gradient-magenta);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 24px;
+}
+
+.announcement-bar__text {
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.announcement-bar__socials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.announcement-bar__social-link {
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.9;
+  transition: opacity var(--transition);
+}
+
+.announcement-bar__social-link:hover {
+  opacity: 1;
+}
+
+.announcement-bar__social-label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}

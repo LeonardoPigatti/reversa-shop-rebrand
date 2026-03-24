@@ -1,0 +1,16 @@
+import Logo from '../Logo/Logo'
+import HeaderIcons from '../HeaderIcons/HeaderIcons'
+import Navbar from '../Navbar/Navbar'
+import './Header.css'
+
+export default function Header() {
+  return (
+    <header className="header">
+      <div className="header__top">
+        <Logo />
+        <HeaderIcons />
+      </div>
+      <Navbar />
+    </header>
+  )
+}

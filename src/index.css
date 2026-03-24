@@ -1,0 +1,60 @@
+/* ── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Variáveis globais ─────────────────────────────────────── */
+:root {
+  --color-primary:      #e8008a;
+  --color-primary-dark: #a8005e;
+  --color-primary-light:#ff4dbb;
+  --color-neon:         #ff00aa;
+  --color-neon-alt:     #c800ff;
+  --color-bg-dark:      #0d0010;
+  --color-bg-bar:       #1a0020;
+  --color-pink-light:   #ff4dbb;
+  --color-pink-mid:     #e8008a;
+  --color-purple-soft:  #c800ff;
+  --color-white:        #ffffff;
+   --color-black:        #000000;
+  --color-text:         #111111;
+  --color-border:       #eeeeee;
+
+  --gradient-magenta: linear-gradient(135deg, #ff00aa 0%, #e8008a 40%, #c800ff 100%);
+  --gradient-magenta-border: linear-gradient(90deg, #ff00aa, #c800ff, #ff4dbb, #c800ff, #ff00aa);
+
+  --font-display: 'Bebas Neue', Impact, sans-serif;
+  --font-body:    'Poppins', sans-serif;
+
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg: 16px;
+
+  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 20px rgba(155, 31, 232, 0.35);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.18);
+
+  --transition: 0.2s ease;
+}
+
+/* ── Base ──────────────────────────────────────────────────── */
+html, body {
+  font-family: var(--font-body);
+  background: var(--color-black);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}

@@ -1,0 +1,28 @@
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.header-icons__btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  position: relative;
+  color: #fff;
+  transition: color var(--transition), filter var(--transition);
+}
+
+.header-icons__btn:hover {
+  color: var(--color-neon);
+  filter:
+    drop-shadow(0 0 6px var(--color-neon))
+    drop-shadow(0 0 14px var(--color-neon-alt));
+}
+
+.header-icons__search-label {
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}

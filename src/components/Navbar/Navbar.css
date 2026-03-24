@@ -1,0 +1,38 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  border-bottom: 1px solid #1a1a1a;
+  padding: 0 12px;
+  overflow-x: auto;
+}
+
+.navbar__link {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: #fff;
+  padding: 14px 10px;
+  border-bottom: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  white-space: nowrap;
+  transition: color var(--transition), border-color var(--transition), text-shadow var(--transition);
+}
+
+.navbar__link:hover {
+  color: var(--color-neon);
+  text-shadow:
+    0 0 8px var(--color-neon),
+    0 0 20px var(--color-neon-alt);
+}
+
+.navbar__link--active {
+  color: var(--color-neon);
+  border-bottom-color: var(--color-neon);
+  text-shadow:
+    0 0 8px var(--color-neon),
+    0 0 20px var(--color-neon-alt);
+}
