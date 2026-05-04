@@ -1,0 +1,29 @@
+.marquee-strip {
+  background: var(--gradient-magenta);
+  overflow: hidden;
+  padding: 10px 0;
+  white-space: nowrap;
+}
+
+.marquee-strip__track {
+  display: inline-flex;
+  animation: marquee 18s linear infinite;
+}
+
+.marquee-strip__item {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  color: var(--color-white);
+  padding: 0 1.5rem;
+}
+
+.marquee-strip__dot {
+  opacity: 0.7;
+  font-size: 0.7rem;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-33.333%); }
+}
