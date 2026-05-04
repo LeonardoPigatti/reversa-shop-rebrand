@@ -1,0 +1,98 @@
+.wishlist-page {
+  background: var(--color-black);
+  color: var(--color-white);
+  min-height: 80vh;
+  font-family: var(--font-body);
+}
+
+/* ── Header ── */
+.wishlist-page__header {
+  text-align: center;
+  padding: 3rem 2rem 1.5rem;
+  border-bottom: 1px solid #222;
+}
+
+.wishlist-page__title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  color: var(--color-white);
+}
+
+.wishlist-page__breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  color: #666;
+}
+
+.wishlist-page__breadcrumb a {
+  color: #666;
+  transition: color var(--transition);
+}
+
+.wishlist-page__breadcrumb a:hover {
+  color: var(--color-primary);
+}
+
+.wishlist-page__breadcrumb strong {
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+/* ── Empty state ── */
+.wishlist-page__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.wishlist-page__icon {
+  width: 90px;
+  height: 90px;
+  stroke: #333;
+  stroke-width: 1;
+}
+
+.wishlist-page__empty-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  color: var(--color-white);
+}
+
+.wishlist-page__empty-text {
+  font-size: 0.85rem;
+  color: #888;
+  line-height: 1.8;
+}
+
+/* ── Botão ── */
+.wishlist-page__btn {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.75rem 2rem;
+  background: transparent;
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  border: 1px solid var(--color-white);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.wishlist-page__btn:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+}
