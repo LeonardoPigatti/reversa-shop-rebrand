@@ -1,0 +1,56 @@
+/* Loading */
+.todos-page__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 6rem 2rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+.todos-page__spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #333;
+  border-top-color: var(--color-neon);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  box-shadow: 0 0 8px var(--color-neon);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Erro */
+.todos-page__erro {
+  padding: 4rem 2rem;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  letter-spacing: 0.04em;
+}
+
+/* Vazio */
+.todos-page__vazio {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: #555;
+  text-align: center;
+  padding: 4rem 0;
+  letter-spacing: 0.06em;
+}
+
+/* Preço riscado (promocional) */
+.product-card__price-old {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: #999;
+  text-align: center;
+  text-decoration: line-through;
+}

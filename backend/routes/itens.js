@@ -3,13 +3,30 @@ import Item from '../models/Item.js'
 
 const router = express.Router()
 
-// GET /api/itens
+// GET /api/itens?genero=feminino&categoria=Vestidos&plus_size=true&colecao=Marimoon
 router.get('/', async (req, res) => {
   try {
-    const itens = await Item.find({ ativo: true }).sort({ createdAt: -1 })
+    const query = { ativo: true }
+
+    if (req.query.genero)    query.genero    = req.query.genero
+    if (req.query.categoria) query.categoria = req.query.categoria
+    if (req.query.colecao)   query.colecao   = req.query.colecao
+    if (req.query.plus_size) query.plus_size = req.query.plus_size === 'true'
+
+    const itens = await Item.find(query).sort({ createdAt: -1 })
     res.json(itens)
   } catch (err) {
     res.status(500).json({ error: 'Erro ao buscar itens' })
+  }
+})
+
+// GET /api/itens/colecoes — lista todas as coleções cadastradas
+router.get('/colecoes', async (req, res) => {
+  try {
+    const colecoes = await Item.distinct('colecao', { ativo: true, colecao: { $ne: null } })
+    res.json(colecoes.sort())
+  } catch (err) {
+    res.status(500).json({ error: 'Erro ao buscar coleções' })
   }
 })
 

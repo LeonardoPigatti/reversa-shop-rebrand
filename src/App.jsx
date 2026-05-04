@@ -7,27 +7,45 @@ import ProductGrid from './components/ProductGrid/ProductGrid'
 import StoreLocator from './components/StoreLocator/StoreLocator'
 import MarqueeStrip from './components/MarqueeStrip/MarqueeStrip'
 import WishlistPage from './components/WishlistPage/WishlistPage'
+import TodosPage from './components/TodosPage/TodosPage'
 import Footer from './components/Footer/Footer'
 
+// pageData: { title, filter } — null quando page === 'home' ou 'wishlist'
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState(null)
-  const [page, setPage] = useState('home') // 'home' | 'wishlist'
+  const [page, setPage] = useState('home')
+  const [pageData, setPageData] = useState(null)
+
+  const handleNavigate = (newPage, data = null) => {
+    setPage(newPage)
+    setPageData(data)
+  }
 
   return (
     <>
       <AnnouncementBar />
-      <Header onWishlistClick={() => setPage('wishlist')} />
+      <Header
+        onWishlistClick={() => handleNavigate('wishlist')}
+        onNavigate={handleNavigate}
+      />
 
       <main>
-        {page === 'wishlist' ? (
-          <WishlistPage onBack={() => setPage('home')} />
-        ) : (
+        {page === 'wishlist' && (
+          <WishlistPage onBack={() => handleNavigate('home')} />
+        )}
+
+        {page === 'catalog' && (
+          <TodosPage
+            title={pageData?.title}
+            filter={pageData?.filter}
+          />
+        )}
+
+        {page === 'home' && (
           <>
             <HeroBanner />
             <CategorySection onSelectCategory={setSelectedCategory} />
-            {selectedCategory && (
-              <ProductGrid category={selectedCategory} />
-            )}
+            {selectedCategory && <ProductGrid category={selectedCategory} />}
             <StoreLocator />
             <MarqueeStrip />
           </>
