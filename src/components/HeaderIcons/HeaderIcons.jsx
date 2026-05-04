@@ -1,4 +1,5 @@
 import Badge from '../Badge/Badge'
+import AccountMenu from '../AccountMenu/AccountMenu'
 import './HeaderIcons.css'
 
 export default function HeaderIcons({ onWishlistClick, onCartClick }) {
@@ -32,13 +33,8 @@ export default function HeaderIcons({ onWishlistClick, onCartClick }) {
         <Badge count={3} />
       </button>
 
-      {/* Account */}
-      <button className="header-icons__btn" title="Minha Conta">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-          <circle cx="12" cy="7" r="4" />
-        </svg>
-      </button>
+      {/* Account — com dropdown */}
+      <AccountMenu />
 
     </div>
   )
