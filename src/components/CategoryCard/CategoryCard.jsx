@@ -1,28 +1,13 @@
-import { useState } from 'react'
 import './CategoryCard.css'
 
-export default function CategoryCard({ label, color }) {
-  const [hovered, setHovered] = useState(false)
+export default function CategoryCard({ label, onClick }) {
+  function handleClick(e) {
+    e.preventDefault()
+    onClick?.()
+  }
 
   return (
-    <a
-      href="#"
-      className={`category-card ${hovered ? 'category-card--hovered' : ''}`}
-      style={{
-        '--card-color': color,
-        background: hovered ? color : '#1a1a2e',
-        borderColor: color,
-        boxShadow: hovered
-          ? `0 8px 30px ${color}55`
-          : 'var(--shadow-lg)',
-      }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <div
-        className="category-card__pattern"
-        style={{ backgroundImage: `radial-gradient(circle, ${color}33 1px, transparent 1px)` }}
-      />
+    <a href="#" className="category-card" onClick={handleClick}>
       <span className="category-card__label">{label}</span>
     </a>
   )

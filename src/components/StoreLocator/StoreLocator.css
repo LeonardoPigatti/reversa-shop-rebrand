@@ -1,0 +1,96 @@
+.store-locator {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+
+/* ── Card ── */
+.store-card {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.store-card__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.45);
+}
+
+.store-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+}
+
+.store-card__content {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* ── Textos ── */
+.store-card__neighborhood {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  opacity: 0.85;
+  text-transform: uppercase;
+}
+
+.store-card__address {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.store-card__district,
+.store-card__city {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.store-card__details {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.82rem;
+  opacity: 0.85;
+}
+
+/* ── Botão ── */
+.store-card__btn {
+  display: inline-block;
+  margin-top: 1.25rem;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--color-white);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  color: var(--color-white);
+  transition: background var(--transition), color var(--transition);
+  width: fit-content;
+}
+
+.store-card__btn:hover {
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
+@media (max-width: 640px) {
+  .store-locator {
+    grid-template-columns: 1fr;
+  }
+}
