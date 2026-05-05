@@ -3,14 +3,14 @@ import Badge from '../Badge/Badge'
 import AccountMenu from '../AccountMenu/AccountMenu'
 import './HeaderIcons.css'
 
-export default function HeaderIcons({ onWishlistClick, onCartClick, onLoginClick, onNavigate }) {
+export default function HeaderIcons({ onWishlistClick, onCartClick, onLoginClick, onSearchClick, onNavigate }) {
   const { itens } = useCart()
 
   return (
     <div className="header-icons">
 
       {/* Search */}
-      <button className="header-icons__btn header-icons__btn--search" title="Pesquisar">
+      <button className="header-icons__btn header-icons__btn--search" title="Pesquisar" onClick={onSearchClick}>
         <span className="header-icons__search-label">PESQUISAR</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
           <circle cx="11" cy="11" r="8" />

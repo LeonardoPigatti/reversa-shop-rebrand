@@ -13,6 +13,7 @@ router.get('/', async (req, res) => {
     if (req.query.colecao)   query.colecao   = req.query.colecao
     if (req.query.plus_size) query.plus_size = req.query.plus_size === 'true'
     if (req.query.oferta)    query.oferta    = req.query.oferta === 'true'
+    if (req.query.busca)     query.nome      = { $regex: req.query.busca, $options: 'i' }
 
     const limit = req.query.limit ? parseInt(req.query.limit) : 0 // 0 = sem limite
 
