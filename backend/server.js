@@ -2,7 +2,9 @@ import 'dotenv/config'
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
+
 import itensRoutes from './routes/itens.js'
+import pedidosRoutes from './routes/pedidos.js'
 
 const app = express()
 
@@ -10,6 +12,7 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/api/itens', itensRoutes)
+app.use('/api/pedidos', pedidosRoutes)
 
 app.get('/', (req, res) => {
   res.json({ status: 'ok', message: 'API Loja rodando!' })
