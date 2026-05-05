@@ -13,7 +13,7 @@ const SOCIALS = [
 
 const LINKS = {
   DEPARTAMENTOS: ['Acessórios', 'Calçados', 'Decor', 'Feminino', 'Masculino', 'Plus Size', 'Ver Todos'],
-  'LOJA REVERSA': ['Presentes', 'Black Friday', 'Ofertas', 'Halloween', 'Lollapalooza', 'Looks Para Festivais', 'Looks Pra Trabalhar'],
+  'LOJA MIDNIGHT QUEENS CLUB': ['Presentes', 'Black Friday', 'Ofertas', 'Halloween', 'Lollapalooza', 'Looks Para Festivais', 'Looks Pra Trabalhar'],
   INSTITUCIONAL: ['Quem Somos', 'Onde Encontrar', 'Minha Conta', 'Rastrear Pedido', 'Contato'],
   'INFORMAÇÕES ÚTEIS': ['Entregas e Prazos', 'Trocas e Devoluções', 'Termos e Condições', 'Política de Privacidade', 'Garantia'],
 }
@@ -40,7 +40,7 @@ export default function Footer() {
 
         {/* Coluna brand */}
         <div className="footer__brand">
-          <span className="footer__logo">RVLT</span>
+          <span className="footer__logo">MIDNIGHT</span>
           <p className="footer__desc">
             A melhor e mais variada loja em moda alternativa! Vestuário, calçados, acessórios, bolsas e muito mais!
           </p>
@@ -83,7 +83,7 @@ export default function Footer() {
 
       {/* Bottom */}
       <div className="footer__bottom">
-        <p>Reversa Comércio Ltda. | CNPJ: 19.517.809/0001-13 © 2013-2025 - Todos Direitos Reservados - Av. São João, 439. Loja 280. CEP 01035-001. São Paulo - SP - Brasil. Telefone Whatsapp (11) 91861-7964. falecom@lojareversa.com.br</p>
+        <p>MIDNIGHT QUEENS CLUB Comércio Ltda. | CNPJ: 19.517.809/0001-13 © 2013-2025 - Todos Direitos Reservados - Av. São João, 439. Loja 280. CEP 01035-001. São Paulo - SP - Brasil. Telefone Whatsapp (11) 91861-7964. falecom@lojamidnight</p>
       </div>
 
     </footer>

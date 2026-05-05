@@ -3,15 +3,10 @@ import { useAuth } from '../../context/AuthContext'
 import './AccountMenu.css'
 
 const MENU_ITEMS = [
-  { label: 'Painel',            href: '/minha-conta' },
   { label: 'Pedidos',           href: '/minha-conta/pedidos' },
-  { label: 'Downloads',         href: '/minha-conta/downloads' },
   { label: 'Carteira',          href: '/minha-conta/carteira' },
-  { label: 'Lista de Espera',   href: '/minha-conta/lista-de-espera' },
   { label: 'Cupons',            href: '/minha-conta/cupons' },
-  { label: 'Endereços',         href: '/minha-conta/enderecos' },
   { label: 'Detalhes da conta', href: '/minha-conta/detalhes' },
-  { label: 'Lista de Desejos',  href: '/minha-conta/lista-de-desejos' },
 ]
 
 export default function AccountMenu({ onLoginClick }) {

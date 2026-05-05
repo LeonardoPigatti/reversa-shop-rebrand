@@ -1,8 +1,8 @@
 const SOCIAL_ICONS = [
   {
     name: 'Email',
-    href: 'mailto:falecom@lojareversa.com.br',
-    label: 'FALECOM@LOJAREVERSA.COM.BR',
+    href: 'mailto:falecom@lojamidnight',
+    label: 'falecom@lojamidnight',
     showLabel: true,
     svg: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
