@@ -37,7 +37,7 @@ const itemSchema = new mongoose.Schema(
     },
     colecao: {
       type: String,
-      default: null, // null = item avulso, sem coleção
+      default: null,
       trim: true,
     },
     genero: {
@@ -51,6 +51,10 @@ const itemSchema = new mongoose.Schema(
       default: [],
     },
     plus_size: {
+      type: Boolean,
+      default: false,
+    },
+    oferta: {
       type: Boolean,
       default: false,
     },

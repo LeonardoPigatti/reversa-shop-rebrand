@@ -9,6 +9,8 @@ import MarqueeStrip from './components/MarqueeStrip/MarqueeStrip'
 import WishlistPage from './components/WishlistPage/WishlistPage'
 import TodosPage from './components/TodosPage/TodosPage'
 import Footer from './components/Footer/Footer'
+import Banner from './components/Banner/Banner'
+
 
 // pageData: { title, filter } — null quando page === 'home' ou 'wishlist'
 export default function App() {
@@ -45,9 +47,16 @@ export default function App() {
           <>
             <HeroBanner />
             <CategorySection onSelectCategory={setSelectedCategory} />
-            {selectedCategory && <ProductGrid category={selectedCategory} />}
+            {selectedCategory && <ProductGrid carousel category={selectedCategory} />}
+            <Banner url="src\assets\stores\cat.jpg" width="100%" height="125px" text="Uniforme de quem não segue regra"
+  textColor="#c2bfbf"
+  fontSize="2rem"
+  textShadow={true} />
+  <ProductGrid onlyOfertas carousel />
+  <ProductGrid recentes carousel />
             <StoreLocator />
             <MarqueeStrip />
+              <ProductGrid recentes carousel />
           </>
         )}
       </main>

@@ -17,11 +17,13 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 10px;
+  margin-bottom: 30px;
 }
 
 @media (max-width: 1024px) {
   .category-section__grid {
     grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 30px;
   }
 }
 
@@ -32,6 +34,7 @@
 
   .category-section__grid {
     grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 30px;
   }
 
   .category-section__title {
