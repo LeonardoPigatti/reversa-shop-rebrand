@@ -5,7 +5,7 @@ function formatPrice(value) {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 }
 
-export default function CartSidebar({ isOpen, onClose }) {
+export default function CartSidebar({ isOpen, onClose, onCheckout }) {
   const { itens, remover, alterarQty, total, totalItens } = useCart()
 
   return (
@@ -118,7 +118,7 @@ export default function CartSidebar({ isOpen, onClose }) {
               <p className="cart-sidebar__pix">
                 ou {formatPrice(total * 0.95)} no PIX
               </p>
-              <button className="cart-sidebar__checkout">
+              <button className="cart-sidebar__checkout" onClick={() => { onClose(); onCheckout(); }}>
                 FINALIZAR COMPRA
               </button>
             </div>

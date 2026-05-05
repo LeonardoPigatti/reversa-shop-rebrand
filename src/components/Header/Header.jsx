@@ -5,7 +5,7 @@ import Navbar from '../Navbar/Navbar'
 import CartSidebar from '../CartSidebar/CartSidebar'
 import './Header.css'
 
-export default function Header({ onWishlistClick, onNavigate }) {
+export default function Header({ onWishlistClick, onNavigate, onCheckout }) {
   const [isCartOpen, setIsCartOpen] = useState(false)
 
   return (
@@ -24,6 +24,7 @@ export default function Header({ onWishlistClick, onNavigate }) {
       <CartSidebar
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
+        onCheckout={onCheckout}
       />
     </>
   )

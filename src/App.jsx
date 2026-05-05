@@ -9,6 +9,7 @@ import StoreLocator from './components/StoreLocator/StoreLocator'
 import MarqueeStrip from './components/MarqueeStrip/MarqueeStrip'
 import WishlistPage from './components/WishlistPage/WishlistPage'
 import TodosPage from './components/TodosPage/TodosPage'
+import CheckoutPage from './components/CheckoutPage/CheckoutPage'
 import Footer from './components/Footer/Footer'
 import Banner from './components/Banner/Banner'
 
@@ -20,6 +21,7 @@ export default function App() {
   const handleNavigate = (newPage, data = null) => {
     setPage(newPage)
     setPageData(data)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
@@ -28,6 +30,7 @@ export default function App() {
       <Header
         onWishlistClick={() => handleNavigate('wishlist')}
         onNavigate={handleNavigate}
+        onCheckout={() => handleNavigate('checkout')}
       />
 
       <main>
@@ -40,6 +43,10 @@ export default function App() {
             title={pageData?.title}
             filter={pageData?.filter}
           />
+        )}
+
+        {page === 'checkout' && (
+          <CheckoutPage onBack={() => handleNavigate('home')} />
         )}
 
         {page === 'home' && (
@@ -56,7 +63,7 @@ export default function App() {
               fontSize="2rem"
               textShadow={true}
             />
-            <ProductGrid onlyOfertas carousel />           
+            <ProductGrid onlyOfertas carousel />          
             <StoreLocator />
             <MarqueeStrip />
             <ProductGrid recentes carousel />
@@ -64,7 +71,7 @@ export default function App() {
         )}
       </main>
 
-      <Footer />
+      {page !== 'checkout' && <Footer />}
     </CartProvider>
   )
 }
