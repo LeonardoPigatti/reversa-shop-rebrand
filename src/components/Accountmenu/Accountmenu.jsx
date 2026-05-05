@@ -3,13 +3,13 @@ import { useAuth } from '../../context/AuthContext'
 import './AccountMenu.css'
 
 const MENU_ITEMS = [
-  { label: 'Pedidos',           href: '/minha-conta/pedidos' },
-  { label: 'Carteira',          href: '/minha-conta/carteira' },
-  { label: 'Cupons',            href: '/minha-conta/cupons' },
-  { label: 'Detalhes da conta', href: '/minha-conta/detalhes' },
+  { label: 'Pedidos',           page: 'pedidos' },
+  { label: 'Carteira',          page: null },
+  { label: 'Cupons',            page: null },
+  { label: 'Detalhes da conta', page: null },
 ]
 
-export default function AccountMenu({ onLoginClick }) {
+export default function AccountMenu({ onLoginClick, onNavigate }) {
   const { user, logout } = useAuth()
   const [open, setOpen] = useState(false)
   const timeoutRef = useRef(null)
@@ -17,7 +17,6 @@ export default function AccountMenu({ onLoginClick }) {
   const handleMouseEnter = () => { clearTimeout(timeoutRef.current); setOpen(true) }
   const handleMouseLeave = () => { timeoutRef.current = setTimeout(() => setOpen(false), 150) }
 
-  // Não logado — só o ícone, sem dropdown
   if (!user) {
     return (
       <button className="header-icons__btn" title="Entrar / Cadastrar" onClick={onLoginClick}>
@@ -31,7 +30,6 @@ export default function AccountMenu({ onLoginClick }) {
 
   const primeiroNome = user.nome.split(' ')[0].toUpperCase()
 
-  // Logado — OLÁ NOME + dropdown
   return (
     <div className="account-menu" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <button className="header-icons__btn account-menu__trigger" title={user.nome}>
@@ -51,11 +49,19 @@ export default function AccountMenu({ onLoginClick }) {
         <ul className="account-menu__list">
           {MENU_ITEMS.map((item) => (
             <li key={item.label} className="account-menu__item">
-              <a href={item.href} className="account-menu__link">{item.label}</a>
+              <button
+                className="account-menu__link"
+                onClick={() => { setOpen(false); item.page && onNavigate?.(item.page) }}
+              >
+                {item.label}
+              </button>
             </li>
           ))}
           <li className="account-menu__item">
-            <button className="account-menu__link account-menu__link--logout" onClick={logout}>
+            <button
+              className="account-menu__link account-menu__link--logout"
+              onClick={() => { setOpen(false); logout() }}
+            >
               Logout
             </button>
           </li>

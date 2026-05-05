@@ -61,10 +61,12 @@ router.post('/', async (req, res) => {
   }
 })
 
-// GET /api/pedidos — listar todos (admin)
+// GET /api/pedidos?email=x — listar por email ou todos (admin)
 router.get('/', async (req, res) => {
   try {
-    const pedidos = await Pedido.find().sort({ createdAt: -1 })
+    const query = {}
+    if (req.query.email) query['cliente.email'] = req.query.email.toLowerCase()
+    const pedidos = await Pedido.find(query).sort({ createdAt: -1 })
     res.json(pedidos)
   } catch (err) {
     res.status(500).json({ error: 'Erro ao buscar pedidos' })

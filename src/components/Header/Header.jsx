@@ -19,6 +19,7 @@ export default function Header({ onWishlistClick, onNavigate, onCheckout }) {
             onWishlistClick={onWishlistClick}
             onCartClick={() => setIsCartOpen(true)}
             onLoginClick={() => setIsAuthOpen(true)}
+            onNavigate={onNavigate}
           />
         </div>
         <Navbar onNavigate={onNavigate} />

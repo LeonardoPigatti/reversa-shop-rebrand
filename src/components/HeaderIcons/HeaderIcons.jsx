@@ -3,7 +3,7 @@ import Badge from '../Badge/Badge'
 import AccountMenu from '../AccountMenu/AccountMenu'
 import './HeaderIcons.css'
 
-export default function HeaderIcons({ onWishlistClick, onCartClick, onLoginClick }) {
+export default function HeaderIcons({ onWishlistClick, onCartClick, onLoginClick, onNavigate }) {
   const { itens } = useCart()
 
   return (
@@ -37,7 +37,7 @@ export default function HeaderIcons({ onWishlistClick, onCartClick, onLoginClick
       </button>
 
       {/* Account */}
-      <AccountMenu onLoginClick={onLoginClick} />
+      <AccountMenu onLoginClick={onLoginClick} onNavigate={onNavigate} />
 
     </div>
   )

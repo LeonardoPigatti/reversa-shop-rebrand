@@ -11,6 +11,7 @@ import MarqueeStrip from './components/MarqueeStrip/MarqueeStrip'
 import WishlistPage from './components/WishlistPage/WishlistPage'
 import TodosPage from './components/TodosPage/TodosPage'
 import CheckoutPage from './components/CheckoutPage/CheckoutPage'
+import PedidosPage from './components/PedidosPage/PedidosPage'
 import Footer from './components/Footer/Footer'
 import Banner from './components/Banner/Banner'
 
@@ -41,14 +42,15 @@ export default function App() {
           )}
 
           {page === 'catalog' && (
-            <TodosPage
-              title={pageData?.title}
-              filter={pageData?.filter}
-            />
+            <TodosPage title={pageData?.title} filter={pageData?.filter} />
           )}
 
           {page === 'checkout' && (
             <CheckoutPage onBack={() => handleNavigate('home')} />
+          )}
+
+          {page === 'pedidos' && (
+            <PedidosPage />
           )}
 
           {page === 'home' && (
@@ -65,7 +67,7 @@ export default function App() {
                 fontSize="2rem"
                 textShadow={true}
               />
-              <ProductGrid onlyOfertas carousel />           
+              <ProductGrid onlyOfertas carousel />             
               <StoreLocator />
               <MarqueeStrip />
               <ProductGrid recentes carousel />
