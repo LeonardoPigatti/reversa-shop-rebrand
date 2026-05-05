@@ -6,6 +6,7 @@ import cors from 'cors'
 import itensRoutes from './routes/itens.js'
 import pedidosRoutes from './routes/pedidos.js'
 import authRoutes from './routes/auth.js'
+import wishlistRoutes from './routes/wishlist.js'
 
 const app = express()
 
@@ -15,6 +16,7 @@ app.use(express.json())
 app.use('/api/itens', itensRoutes)
 app.use('/api/pedidos', pedidosRoutes)
 app.use('/api/auth', authRoutes)
+app.use('/api/wishlist', wishlistRoutes)
 
 app.get('/', (req, res) => {
   res.json({ status: 'ok', message: 'API Loja rodando!' })

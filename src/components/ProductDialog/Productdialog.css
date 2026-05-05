@@ -380,3 +380,29 @@
     font-size: 2rem;
   }
 }
+
+/* Top do lado direito com categoria + coração */
+.pd-right__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pd-right__top .wishlist-btn {
+  position: static;
+  width: 36px;
+  height: 36px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  flex-shrink: 0;
+}
+
+.pd-right__top .wishlist-btn:hover {
+  background: rgba(232, 0, 138, 0.2);
+  border-color: var(--color-primary);
+}
+
+.pd-right__top .wishlist-btn--active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}

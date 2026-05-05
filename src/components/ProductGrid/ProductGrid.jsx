@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import './ProductGrid.css'
 import ProductDialog from '../ProductDialog/ProductDialog'
+import WishlistBtn from '../WishlistBtn/WishlistBtn'
 
 const PAGE_SIZE = 6
 
@@ -35,6 +36,7 @@ function ProductCard({ p, onClick }) {
 
   return (
     <div className="product-card" onClick={onClick} role="button" tabIndex={0}>
+      <WishlistBtn item={p} />
       {p.oferta && <span className="product-card__badge">OFERTA</span>}
       <div className="product-card__img-wrap">
         <img
@@ -213,6 +215,19 @@ export default function ProductGrid({
               ))}
             </div>
           </div>
+
+          {totalPaginas > 1 && (
+            <div className="product-grid__dots">
+              {paginas.map((_, i) => (
+                <button
+                  key={i}
+                  className={`product-grid__dot ${i === pagina ? 'product-grid__dot--active' : ''}`}
+                  onClick={() => setPagina(i)}
+                  title={`Página ${i + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </section>
         {dialog}
       </>

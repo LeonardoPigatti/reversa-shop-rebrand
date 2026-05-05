@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useCart } from '../../context/CartContext'
+import WishlistBtn from '../WishlistBtn/WishlistBtn'
 import './ProductDialog.css'
 
 function formatPrice(value) {
@@ -73,7 +74,10 @@ export default function ProductDialog({ item, onClose }) {
 
         {/* ── Lado direito — info ── */}
         <div className="pd-right">
-          <p className="pd-categoria">{item.categoria}</p>
+          <div className="pd-right__top">
+            <p className="pd-categoria">{item.categoria}</p>
+            <WishlistBtn item={item} />
+          </div>
           <h2 className="pd-nome">{item.nome}</h2>
 
           <Stars rating={0} />
