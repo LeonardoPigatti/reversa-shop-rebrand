@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { CartProvider } from './context/CartContext'
+import { AuthProvider } from './context/AuthContext'
 import AnnouncementBar from './components/AnnouncementBar/AnnouncementBar'
 import Header from './components/Header/Header'
 import HeroBanner from './components/HeroBanner/HeroBanner'
@@ -25,53 +26,55 @@ export default function App() {
   }
 
   return (
-    <CartProvider>
-      <AnnouncementBar />
-      <Header
-        onWishlistClick={() => handleNavigate('wishlist')}
-        onNavigate={handleNavigate}
-        onCheckout={() => handleNavigate('checkout')}
-      />
+    <AuthProvider>
+      <CartProvider>
+        <AnnouncementBar />
+        <Header
+          onWishlistClick={() => handleNavigate('wishlist')}
+          onNavigate={handleNavigate}
+          onCheckout={() => handleNavigate('checkout')}
+        />
 
-      <main>
-        {page === 'wishlist' && (
-          <WishlistPage onBack={() => handleNavigate('home')} />
-        )}
+        <main>
+          {page === 'wishlist' && (
+            <WishlistPage onBack={() => handleNavigate('home')} />
+          )}
 
-        {page === 'catalog' && (
-          <TodosPage
-            title={pageData?.title}
-            filter={pageData?.filter}
-          />
-        )}
-
-        {page === 'checkout' && (
-          <CheckoutPage onBack={() => handleNavigate('home')} />
-        )}
-
-        {page === 'home' && (
-          <>
-            <HeroBanner />
-            <CategorySection onSelectCategory={setSelectedCategory} />
-            {selectedCategory && <ProductGrid carousel category={selectedCategory} />}
-            <Banner
-              url="src\assets\stores\cat.jpg"
-              width="100%"
-              height="125px"
-              text="Uniforme de quem não segue regra"
-              textColor="#c2bfbf"
-              fontSize="2rem"
-              textShadow={true}
+          {page === 'catalog' && (
+            <TodosPage
+              title={pageData?.title}
+              filter={pageData?.filter}
             />
-            <ProductGrid onlyOfertas carousel />          
-            <StoreLocator />
-            <MarqueeStrip />
-            <ProductGrid recentes carousel />
-          </>
-        )}
-      </main>
+          )}
 
-      {page !== 'checkout' && <Footer />}
-    </CartProvider>
+          {page === 'checkout' && (
+            <CheckoutPage onBack={() => handleNavigate('home')} />
+          )}
+
+          {page === 'home' && (
+            <>
+              <HeroBanner />
+              <CategorySection onSelectCategory={setSelectedCategory} />
+              {selectedCategory && <ProductGrid carousel category={selectedCategory} />}
+              <Banner
+                url="src\assets\stores\cat.jpg"
+                width="100%"
+                height="125px"
+                text="Uniforme de quem não segue regra"
+                textColor="#c2bfbf"
+                fontSize="2rem"
+                textShadow={true}
+              />
+              <ProductGrid onlyOfertas carousel />           
+              <StoreLocator />
+              <MarqueeStrip />
+              <ProductGrid recentes carousel />
+            </>
+          )}
+        </main>
+
+        {page !== 'checkout' && <Footer />}
+      </CartProvider>
+    </AuthProvider>
   )
 }

@@ -1,5 +1,18 @@
-.account-menu {
-  position: relative;
+.account-menu { position: relative; }
+
+.account-menu__trigger {
+  flex-direction: column;
+  gap: 2px;
+}
+
+.account-menu__ola {
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-neon);
+  white-space: nowrap;
+  text-shadow: 0 0 8px rgba(255, 0, 170, 0.5);
 }
 
 /* Dropdown */
@@ -7,20 +20,15 @@
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
-  width: 200px;
+  width: 220px;
   background: var(--color-bg-bar);
   border: 1px solid #1a1a1a;
   border-top: 2px solid var(--color-neon);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.5),
-    0 0 20px rgba(255, 0, 170, 0.08);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(255,0,170,0.08);
   opacity: 0;
   visibility: hidden;
   transform: translateY(6px);
-  transition:
-    opacity 0.2s ease,
-    visibility 0.2s ease,
-    transform 0.2s ease;
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
   z-index: 998;
 }
 
@@ -30,23 +38,38 @@
   transform: translateY(0);
 }
 
+/* Info do usuário */
+.account-menu__user { padding: 12px 18px; }
+
+.account-menu__user-nome {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: 0.04em;
+}
+
+.account-menu__user-email {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: #555;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.account-menu__divider { height: 1px; background: #1a1a1a; }
+
 /* Lista */
-.account-menu__list {
-  list-style: none;
-  padding: 6px 0;
-}
+.account-menu__list { list-style: none; padding: 6px 0; }
+.account-menu__item { border-bottom: 1px solid #1a1a1a; }
+.account-menu__item:last-child { border-bottom: none; }
 
-.account-menu__item {
-  border-bottom: 1px solid #1a1a1a;
-}
-
-.account-menu__item:last-child {
-  border-bottom: none;
-}
-
-/* Links */
 .account-menu__link {
   display: block;
+  width: 100%;
+  text-align: left;
   padding: 10px 18px;
   font-family: var(--font-body);
   font-size: 12px;
@@ -55,6 +78,9 @@
   color: #ccc;
   text-transform: uppercase;
   text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
   transition: color var(--transition), background var(--transition), text-shadow var(--transition);
 }
 
@@ -64,10 +90,7 @@
   text-shadow: 0 0 8px var(--color-neon);
 }
 
-/* Logout */
-.account-menu__link--logout {
-  color: #666;
-}
+.account-menu__link--logout { color: #666; }
 
 .account-menu__link--logout:hover {
   color: var(--color-primary);

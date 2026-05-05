@@ -1,8 +1,11 @@
+import { useCart } from '../../context/CartContext'
 import Badge from '../Badge/Badge'
 import AccountMenu from '../AccountMenu/AccountMenu'
 import './HeaderIcons.css'
 
-export default function HeaderIcons({ onWishlistClick, onCartClick }) {
+export default function HeaderIcons({ onWishlistClick, onCartClick, onLoginClick }) {
+  const { itens } = useCart()
+
   return (
     <div className="header-icons">
 
@@ -30,11 +33,11 @@ export default function HeaderIcons({ onWishlistClick, onCartClick }) {
           <line x1="3" y1="6" x2="21" y2="6" />
           <path d="M16 10a4 4 0 0 1-8 0" />
         </svg>
-        <Badge count={3} />
+        <Badge count={itens.length} />
       </button>
 
-      {/* Account — com dropdown */}
-      <AccountMenu />
+      {/* Account */}
+      <AccountMenu onLoginClick={onLoginClick} />
 
     </div>
   )
