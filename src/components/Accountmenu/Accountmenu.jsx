@@ -6,7 +6,7 @@ const MENU_ITEMS = [
   { label: 'Pedidos',           page: 'pedidos' },
   { label: 'Carteira',          page: null },
   { label: 'Cupons',            page: null },
-  { label: 'Detalhes da conta', page: null },
+  { label: 'Detalhes da conta', page: 'detalhes' },
 ]
 
 export default function AccountMenu({ onLoginClick, onNavigate }) {

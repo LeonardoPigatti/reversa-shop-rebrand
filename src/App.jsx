@@ -13,6 +13,7 @@ import WishlistPage from './components/WishlistPage/WishlistPage'
 import TodosPage from './components/TodosPage/TodosPage'
 import CheckoutPage from './components/CheckoutPage/CheckoutPage'
 import PedidosPage from './components/PedidosPage/PedidosPage'
+import DetalhesPage from './components/DetalhesPage/DetalhesPage'
 import Footer from './components/Footer/Footer'
 import Banner from './components/Banner/Banner'
 
@@ -40,23 +41,16 @@ export default function App() {
 
           <main>
             {page === 'wishlist' && (
-              <WishlistPage
-                onBack={() => handleNavigate('home')}
-                onLoginClick={() => {/* abre AuthSidebar via Header */}}
-              />
+              <WishlistPage onBack={() => handleNavigate('home')} />
             )}
-
             {page === 'catalog' && (
               <TodosPage title={pageData?.title} filter={pageData?.filter} />
             )}
-
             {page === 'checkout' && (
               <CheckoutPage onBack={() => handleNavigate('home')} />
             )}
-
-            {page === 'pedidos' && (
-              <PedidosPage />
-            )}
+            {page === 'pedidos' && <PedidosPage />}
+            {page === 'detalhes' && <DetalhesPage />}
 
             {page === 'home' && (
               <>
