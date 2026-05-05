@@ -14,6 +14,7 @@ import TodosPage from './components/TodosPage/TodosPage'
 import CheckoutPage from './components/CheckoutPage/CheckoutPage'
 import PedidosPage from './components/PedidosPage/PedidosPage'
 import DetalhesPage from './components/DetalhesPage/DetalhesPage'
+import WelcomeDialog from './components/WelcomeDialog/WelcomeDialog'
 import Footer from './components/Footer/Footer'
 import Banner from './components/Banner/Banner'
 
@@ -75,6 +76,10 @@ export default function App() {
           </main>
 
           {page !== 'checkout' && <Footer />}
+
+          {/* Aparece só na home, uma vez por sessão */}
+          {page === 'home' && <WelcomeDialog />}
+
         </WishlistProvider>
       </CartProvider>
     </AuthProvider>
