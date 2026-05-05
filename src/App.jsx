@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { CartProvider } from './context/CartContext'
 import AnnouncementBar from './components/AnnouncementBar/AnnouncementBar'
 import Header from './components/Header/Header'
 import HeroBanner from './components/HeroBanner/HeroBanner'
@@ -11,8 +12,6 @@ import TodosPage from './components/TodosPage/TodosPage'
 import Footer from './components/Footer/Footer'
 import Banner from './components/Banner/Banner'
 
-
-// pageData: { title, filter } — null quando page === 'home' ou 'wishlist'
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [page, setPage] = useState('home')
@@ -24,7 +23,7 @@ export default function App() {
   }
 
   return (
-    <>
+    <CartProvider>
       <AnnouncementBar />
       <Header
         onWishlistClick={() => handleNavigate('wishlist')}
@@ -48,20 +47,24 @@ export default function App() {
             <HeroBanner />
             <CategorySection onSelectCategory={setSelectedCategory} />
             {selectedCategory && <ProductGrid carousel category={selectedCategory} />}
-            <Banner url="src\assets\stores\cat.jpg" width="100%" height="125px" text="Uniforme de quem não segue regra"
-  textColor="#c2bfbf"
-  fontSize="2rem"
-  textShadow={true} />
-  <ProductGrid onlyOfertas carousel />
-  <ProductGrid recentes carousel />
+            <Banner
+              url="src\assets\stores\cat.jpg"
+              width="100%"
+              height="125px"
+              text="Uniforme de quem não segue regra"
+              textColor="#c2bfbf"
+              fontSize="2rem"
+              textShadow={true}
+            />
+            <ProductGrid onlyOfertas carousel />           
             <StoreLocator />
             <MarqueeStrip />
-              <ProductGrid recentes carousel />
+            <ProductGrid recentes carousel />
           </>
         )}
       </main>
 
       <Footer />
-    </>
+    </CartProvider>
   )
 }
