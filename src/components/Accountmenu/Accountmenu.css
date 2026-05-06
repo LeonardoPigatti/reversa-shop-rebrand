@@ -97,3 +97,44 @@
   background: rgba(232, 0, 138, 0.06);
   text-shadow: 0 0 8px var(--color-primary);
 }
+
+/* ── Roleta ── */
+.account-menu__roleta {
+  height: 22px;
+  overflow: hidden;
+  width: 22px;
+  transition: width 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.account-menu__roleta:has(.account-menu__roleta-inner--nome) {
+  width: 90px;
+}
+
+.account-menu__roleta-inner {
+  display: flex;
+  flex-direction: column;
+  height: 44px;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.account-menu__roleta-inner--nome {
+  transform: translateY(-22px);
+}
+
+.account-menu__roleta-slot {
+  height: 22px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.account-menu__ola {
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-neon);
+  white-space: nowrap;
+  text-shadow: 0 0 8px rgba(255, 0, 170, 0.5);
+}
