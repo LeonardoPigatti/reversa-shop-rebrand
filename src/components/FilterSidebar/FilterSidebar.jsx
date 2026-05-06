@@ -1,14 +1,8 @@
 import { useState } from 'react'
 import './FilterSidebar.css'
 
-const CATEGORIAS = [
-  'Acessórios', 'Blusas', 'Bodies', 'Bolsas', 'Bazar',
-  'Calças', 'Calçados', 'Camisetas', 'Casacos', 'Conjuntos',
-  'Cosméticos', 'Decoração', 'Fitness', 'Homewear',
-  'Jaquetas', 'Moda Praia', 'Moletons', 'Saias', 'Vestidos',
-]
-
-const TAMANHOS = [
+// Ordem preferida dos tamanhos
+const ORDEM_TAMANHOS = [
   'PP', 'P', 'M', 'G', 'GG', 'XG',
   '1G', '2G', '3G', '4G', '5G',
   '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44',
@@ -34,7 +28,13 @@ function Section({ title, children, defaultOpen = true }) {
   )
 }
 
-export default function FilterSidebar({ filtros, onChange, onLimpar }) {
+export default function FilterSidebar({ filtros, onChange, onLimpar, itens = [] }) {
+  // Derivar opções disponíveis dos itens reais
+  const categoriasDisponiveis = [...new Set(itens.map((i) => i.categoria).filter(Boolean))].sort()
+  const tamanhosDisponiveis = ORDEM_TAMANHOS.filter((t) =>
+    itens.some((i) => i.tamanhos?.includes(t))
+  )
+  const temPlusSize = itens.some((i) => i.plus_size)
   const [collapsed, setCollapsed] = useState(false)
   const { categorias, tamanhos, plusSize, precoMin, precoMax } = filtros
 
@@ -83,7 +83,7 @@ export default function FilterSidebar({ filtros, onChange, onLimpar }) {
       {/* Categorias */}
       <Section title="CATEGORIAS">
         <div className="fs-list">
-          {CATEGORIAS.map((cat) => (
+          {categoriasDisponiveis.map((cat) => (
             <label key={cat} className="fs-check">
               <input
                 type="checkbox"
@@ -100,7 +100,7 @@ export default function FilterSidebar({ filtros, onChange, onLimpar }) {
       {/* Tamanho */}
       <Section title="TAMANHO">
         <div className="fs-tamanhos">
-          {TAMANHOS.map((tam) => (
+          {tamanhosDisponiveis.map((tam) => (
             <button
               key={tam}
               className={`fs-tam ${tamanhos.includes(tam) ? 'fs-tam--active' : ''}`}
@@ -112,18 +112,20 @@ export default function FilterSidebar({ filtros, onChange, onLimpar }) {
         </div>
       </Section>
 
-      {/* Plus Size */}
-      <Section title="TEM PLUS SIZE?">
-        <label className="fs-check">
-          <input
-            type="checkbox"
-            checked={plusSize}
-            onChange={() => onChange({ ...filtros, plusSize: !plusSize })}
-          />
-          <span className="fs-check__box" />
-          <span className="fs-check__label">Plus Size</span>
-        </label>
-      </Section>
+      {/* Plus Size — só aparece se tiver itens plus size */}
+      {temPlusSize && (
+        <Section title="TEM PLUS SIZE?">
+          <label className="fs-check">
+            <input
+              type="checkbox"
+              checked={plusSize}
+              onChange={() => onChange({ ...filtros, plusSize: !plusSize })}
+            />
+            <span className="fs-check__box" />
+            <span className="fs-check__label">Plus Size</span>
+          </label>
+        </Section>
+      )}
 
       {/* Preço */}
       <Section title="PREÇO">

@@ -33,8 +33,11 @@ export default function TodosPage({ title = 'TODOS OS PRODUTOS', filter = {} }) 
   const [selectedItem, setSelectedItem] = useState(null)
   const [filtros, setFiltros] = useState(FILTROS_INICIAIS)
   const [busca, setBusca] = useState('')
+  const [visivelCount, setVisivelCount] = useState(18) // 3 fileiras x 6 colunas
 
   useEffect(() => {
+    setVisivelCount(18)
+    setBusca('')
     setLoading(true)
     setErro(null)
 
@@ -50,9 +53,14 @@ export default function TodosPage({ title = 'TODOS OS PRODUTOS', filter = {} }) 
       .catch((err) => { setErro(err.message); setLoading(false) })
   }, [JSON.stringify(filter)])
 
-  // Filtragem local
-  const itensFiltrados = itens.filter((item) => {
-    if (busca.trim() && !item.nome.toLowerCase().includes(busca.toLowerCase())) return false
+  // Primeiro filtra por busca — essa lista alimenta o FilterSidebar
+  const itensPorBusca = itens.filter((item) => {
+    if (!busca.trim()) return true
+    return item.nome.toLowerCase().includes(busca.toLowerCase())
+  })
+
+  // Depois aplica os filtros da sidebar sobre os resultados da busca
+  const itensFiltrados = itensPorBusca.filter((item) => {
     if (filtros.categorias.length > 0 && !filtros.categorias.includes(item.categoria)) return false
     if (filtros.tamanhos.length > 0 && !filtros.tamanhos.some((t) => item.tamanhos?.includes(t))) return false
     if (filtros.plusSize && !item.plus_size) return false
@@ -78,6 +86,7 @@ export default function TodosPage({ title = 'TODOS OS PRODUTOS', filter = {} }) 
         filtros={filtros}
         onChange={setFiltros}
         onLimpar={() => setFiltros(FILTROS_INICIAIS)}
+        itens={itensPorBusca}
       />
 
       <section className="todos-page__content">
@@ -111,7 +120,7 @@ export default function TodosPage({ title = 'TODOS OS PRODUTOS', filter = {} }) 
           <p className="todos-page__vazio">Nenhum produto encontrado com esses filtros.</p>
         ) : (
           <div className="product-grid__items">
-            {itensFiltrados.map((item) => {
+            {itensFiltrados.slice(0, visivelCount).map((item) => {
               const installments = 6
               const installmentValue = item.preco / installments
               const preco = item.preco_promocional ?? item.preco
