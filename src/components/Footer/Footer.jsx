@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './Footer.css'
 import { FaFacebookF, FaInstagram, FaYoutube, FaPinterestP, FaSpotify, FaWhatsapp, FaTiktok } from 'react-icons/fa'
 
@@ -19,6 +20,33 @@ const LINKS = {
 }
 
 export default function Footer() {
+  const [nome, setNome] = useState('')
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState(null) // null | 'loading' | 'ok' | 'erro'
+  const [msg, setMsg] = useState('')
+
+  const handleNewsletter = async (e) => {
+    e.preventDefault()
+    if (!email) return
+    setStatus('loading')
+    try {
+      const res = await fetch('http://localhost:5000/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, email }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error)
+      setStatus('ok')
+      setMsg(data.message)
+      setNome('')
+      setEmail('')
+    } catch (err) {
+      setStatus('erro')
+      setMsg(err.message)
+    }
+  }
+
   return (
     <footer className="footer">
 
@@ -28,17 +56,45 @@ export default function Footer() {
           <strong>ASSINE NOSSA NEWSLETTER</strong>
           <p>Cadastre seu e-mail para receber ofertas exclusivas!</p>
         </div>
-        <div className="footer__newsletter-form">
-          <input type="text" placeholder="Nome" className="footer__input" />
-          <input type="email" placeholder="Email" className="footer__input" />
-          <button className="footer__btn">CADASTRAR</button>
-        </div>
+
+        {status === 'ok' ? (
+          <div className="footer__newsletter-success">
+            🖤 {msg || 'Cadastro realizado! Verifique seu e-mail.'}
+          </div>
+        ) : (
+          <form className="footer__newsletter-form" onSubmit={handleNewsletter}>
+            <input
+              type="text"
+              placeholder="Nome"
+              className="footer__input"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              className="footer__input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <button
+              type="submit"
+              className="footer__btn"
+              disabled={status === 'loading'}
+            >
+              {status === 'loading' ? 'ENVIANDO...' : 'CADASTRAR'}
+            </button>
+            {status === 'erro' && (
+              <p className="footer__newsletter-erro">{msg}</p>
+            )}
+          </form>
+        )}
       </div>
 
       {/* Main */}
       <div className="footer__main">
 
-        {/* Coluna brand */}
         <div className="footer__brand">
           <span className="footer__logo">MIDNIGHT</span>
           <p className="footer__desc">
@@ -51,15 +107,11 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Coluna Brava */}
         <div className="footer__brava">
           <span className="footer__brava-title">BRAVA<br /><small>ESTÚDIO</small></span>
-<p
-  className="footer__desc"
-  style={{ bottom: '25px', position: 'relative' }}
->
-  Conheça também o Brava Estúdio. O melhor salão alternativo de São Paulo
-</p>
+          <p className="footer__desc" style={{ bottom: '25px', position: 'relative' }}>
+            Conheça também o Brava Estúdio. O melhor salão alternativo de São Paulo
+          </p>
           <div className="footer__socials">
             {SOCIALS.map((s, i) => (
               <a key={i} href={s.href} className="footer__social-link">{s.icon}</a>
@@ -67,7 +119,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Colunas de links */}
         {Object.entries(LINKS).map(([title, items]) => (
           <div key={title} className="footer__col">
             <h4 className="footer__col-title">{title}</h4>

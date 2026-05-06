@@ -3,21 +3,23 @@ import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
 
-import itensRoutes    from './routes/itens.js'
-import pedidosRoutes  from './routes/pedidos.js'
-import authRoutes     from './routes/auth.js'
-import wishlistRoutes from './routes/wishlist.js'
-import carteiraRoutes from './routes/carteira.js'
+import itensRoutes      from './routes/itens.js'
+import pedidosRoutes    from './routes/pedidos.js'
+import authRoutes       from './routes/auth.js'
+import wishlistRoutes   from './routes/wishlist.js'
+import carteiraRoutes   from './routes/carteira.js'
+import newsletterRoutes from './routes/newsletter.js'
 
 const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.use('/api/itens',    itensRoutes)
-app.use('/api/pedidos',  pedidosRoutes)
-app.use('/api/auth',     authRoutes)
-app.use('/api/wishlist', wishlistRoutes)
-app.use('/api/carteira', carteiraRoutes)
+app.use('/api/itens',      itensRoutes)
+app.use('/api/pedidos',    pedidosRoutes)
+app.use('/api/auth',       authRoutes)
+app.use('/api/wishlist',   wishlistRoutes)
+app.use('/api/carteira',   carteiraRoutes)
+app.use('/api/newsletter', newsletterRoutes)
 
 app.get('/', (req, res) => res.json({ status: 'ok', message: 'API Loja rodando!' }))
 
