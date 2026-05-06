@@ -32,6 +32,7 @@ export default function TodosPage({ title = 'TODOS OS PRODUTOS', filter = {} }) 
   const [erro, setErro] = useState(null)
   const [selectedItem, setSelectedItem] = useState(null)
   const [filtros, setFiltros] = useState(FILTROS_INICIAIS)
+  const [busca, setBusca] = useState('')
 
   useEffect(() => {
     setLoading(true)
@@ -51,6 +52,7 @@ export default function TodosPage({ title = 'TODOS OS PRODUTOS', filter = {} }) 
 
   // Filtragem local
   const itensFiltrados = itens.filter((item) => {
+    if (busca.trim() && !item.nome.toLowerCase().includes(busca.toLowerCase())) return false
     if (filtros.categorias.length > 0 && !filtros.categorias.includes(item.categoria)) return false
     if (filtros.tamanhos.length > 0 && !filtros.tamanhos.some((t) => item.tamanhos?.includes(t))) return false
     if (filtros.plusSize && !item.plus_size) return false
@@ -84,6 +86,25 @@ export default function TodosPage({ title = 'TODOS OS PRODUTOS', filter = {} }) 
           <span className="todos-page__count">
             {itensFiltrados.length} {itensFiltrados.length === 1 ? 'produto' : 'produtos'}
           </span>
+        </div>
+
+        <div className="todos-page__search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+          </svg>
+          <input
+            className="todos-page__search-input"
+            placeholder="Buscar nesta página..."
+            value={busca}
+            onChange={(e) => setBusca(e.target.value)}
+          />
+          {busca && (
+            <button className="todos-page__search-clear" onClick={() => setBusca('')}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          )}
         </div>
 
         {itensFiltrados.length === 0 ? (
