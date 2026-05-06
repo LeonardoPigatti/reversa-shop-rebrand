@@ -1,0 +1,314 @@
+.fs {
+  width: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+  border: 1px solid #1a1a1a;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: sticky;
+  top: 16px;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  scrollbar-width: thin;
+  scrollbar-color: #222 transparent;
+}
+
+.fs::-webkit-scrollbar { width: 3px; }
+.fs::-webkit-scrollbar-track { background: transparent; }
+.fs::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+.fs:hover::-webkit-scrollbar-thumb { background: var(--color-primary); }
+
+.fs--collapsed {
+  width: 48px;
+}
+
+/* ── Hover geral da sidebar ── */
+.fs:hover {
+  border-color: #2a2a2a;
+  box-shadow: 0 0 24px rgba(255, 0, 170, 0.07);
+}
+
+/* Header */
+.fs-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 12px;
+  border-bottom: 2px solid var(--color-primary);
+  gap: 8px;
+  min-height: 48px;
+}
+
+.fs-header__title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 0.12em;
+  color: var(--color-white);
+  white-space: nowrap;
+  overflow: hidden;
+  transition: opacity 0.2s ease;
+}
+
+.fs--collapsed .fs-header__title {
+  opacity: 0;
+  width: 0;
+}
+
+.fs-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.fs-header__limpar {
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--color-primary);
+  cursor: pointer;
+  padding: 0;
+  white-space: nowrap;
+  transition: color var(--transition), text-shadow var(--transition);
+}
+
+.fs-header__limpar:hover {
+  color: var(--color-neon);
+  text-shadow: 0 0 6px var(--color-neon);
+}
+
+.fs-header__toggle {
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: 1px solid #2a2a2a;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color var(--transition), color var(--transition), box-shadow var(--transition);
+}
+
+.fs-header__toggle:hover {
+  border-color: var(--color-primary);
+  color: var(--color-neon);
+  box-shadow: 0 0 8px rgba(255, 0, 170, 0.3);
+}
+
+.fs-header__arrow {
+  transition: transform 0.3s ease;
+}
+
+.fs-header__arrow--right {
+  transform: rotate(180deg);
+}
+
+/* Seção */
+.fs-section {
+  border-bottom: 1px solid #111;
+}
+
+.fs-section__header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #666;
+  text-transform: uppercase;
+  transition: color var(--transition), background var(--transition);
+}
+
+.fs-section__header:hover {
+  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.fs-section__chevron {
+  color: #444;
+  transition: transform 0.2s ease, color var(--transition);
+  flex-shrink: 0;
+}
+
+.fs-section__header:hover .fs-section__chevron {
+  color: var(--color-primary);
+}
+
+.fs-section__chevron--up {
+  transform: rotate(180deg);
+}
+
+.fs-section__body {
+  padding: 4px 14px 12px;
+}
+
+/* Checkboxes */
+.fs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.fs-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 2px 0;
+  transition: background var(--transition);
+  border-radius: 2px;
+}
+
+.fs-check input[type="checkbox"] { display: none; }
+
+.fs-check__box {
+  width: 14px;
+  height: 14px;
+  border: 1px solid #2a2a2a;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.fs-check:hover .fs-check__box {
+  border-color: var(--color-primary);
+}
+
+.fs-check input:checked + .fs-check__box {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.fs-check input:checked + .fs-check__box::after {
+  content: '';
+  width: 7px;
+  height: 5px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg) translateY(-1px);
+  display: block;
+}
+
+.fs-check__label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: #777;
+  transition: color var(--transition);
+  line-height: 1;
+}
+
+.fs-check:hover .fs-check__label { color: var(--color-white); }
+
+/* Tamanhos */
+.fs-tamanhos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.fs-tam {
+  min-width: 32px;
+  height: 28px;
+  padding: 0 5px;
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  color: #666;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.fs-tam:hover {
+  border-color: #444;
+  color: var(--color-white);
+  background: #111;
+}
+
+.fs-tam--active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 0 6px rgba(255, 0, 170, 0.25);
+}
+
+/* Preço */
+.fs-preco { display: flex; flex-direction: column; gap: 8px; }
+
+.fs-preco__inputs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fs-preco__input {
+  flex: 1;
+  background: #080808;
+  border: 1px solid #1a1a1a;
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 11px;
+  padding: 6px 8px;
+  outline: none;
+  width: 0;
+  transition: border-color var(--transition);
+}
+
+.fs-preco__input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+.fs-preco__sep {
+  color: #333;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.fs-preco__label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: #444;
+  text-align: right;
+}
+
+/* Botão limpar */
+.fs-limpar-btn {
+  margin: 12px 14px 14px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid #222;
+  color: #555;
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition), box-shadow var(--transition);
+}
+
+.fs-limpar-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: 0 0 10px rgba(255, 0, 170, 0.2);
+}

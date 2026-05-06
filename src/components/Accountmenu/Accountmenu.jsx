@@ -4,8 +4,7 @@ import './AccountMenu.css'
 
 const MENU_ITEMS = [
   { label: 'Pedidos',           page: 'pedidos' },
-  { label: 'Carteira',          page: null },
-  { label: 'Cupons',            page: null },
+  { label: 'Carteira',          page: 'carteira' },
   { label: 'Detalhes da conta', page: 'detalhes' },
 ]
 
