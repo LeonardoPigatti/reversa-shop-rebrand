@@ -19,6 +19,7 @@ import CarteiraPage     from './components/CarteiraPage/CarteiraPage'
 import WelcomeDialog    from './components/WelcomeDialog/WelcomeDialog'
 import Footer           from './components/Footer/Footer'
 import Banner           from './components/Banner/Banner'
+import BatChat          from './components/BatChat/BatChat'
 
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState(null)
@@ -75,6 +76,7 @@ export default function App() {
 
             {page !== 'checkout' && <Footer />}
             {page === 'home' && <WelcomeDialog />}
+            <BatChat />
           </CarteiraProvider>
         </WishlistProvider>
       </CartProvider>
