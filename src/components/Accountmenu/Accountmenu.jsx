@@ -12,10 +12,24 @@ const MENU_ITEMS = [
 export default function AccountMenu({ onLoginClick, onNavigate }) {
   const { user, logout } = useAuth()
   const [open, setOpen] = useState(false)
+  const [showNome, setShowNome] = useState(false)
   const timeoutRef = useRef(null)
+  const intervaloRef = useRef(null)
 
   const handleMouseEnter = () => { clearTimeout(timeoutRef.current); setOpen(true) }
   const handleMouseLeave = () => { timeoutRef.current = setTimeout(() => setOpen(false), 150) }
+
+  // Roleta só quando logado
+  useEffect(() => {
+    if (!user) {
+      setShowNome(false)
+      return
+    }
+    intervaloRef.current = setInterval(() => {
+      setShowNome((s) => !s)
+    }, 4000)
+    return () => clearInterval(intervaloRef.current)
+  }, [user])
 
   if (!user) {
     return (
@@ -29,14 +43,6 @@ export default function AccountMenu({ onLoginClick, onNavigate }) {
   }
 
   const primeiroNome = user.nome.split(' ')[0].toUpperCase()
-  const [showNome, setShowNome] = useState(false)
-
-  useEffect(() => {
-    const intervalo = setInterval(() => {
-      setShowNome((s) => !s)
-    }, 6000)
-    return () => clearInterval(intervalo)
-  }, [])
 
   return (
     <div className="account-menu" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>

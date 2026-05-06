@@ -41,6 +41,9 @@ export default function AuthSidebar({ isOpen, onClose }) {
           genero: form.genero,
         })
       }
+      // Reseta o form e fecha
+      setForm({ nome: '', email: '', senha: '', confirmarSenha: '', cpf: '', telefone: '', nascimento: '', genero: '' })
+      setErro(null)
       onClose()
     } catch (err) {
       setErro(err.message)
@@ -49,21 +52,25 @@ export default function AuthSidebar({ isOpen, onClose }) {
     }
   }
 
+  const handleClose = () => {
+    setErro(null)
+    onClose()
+  }
+
   return (
     <>
       <div
         className={`auth-overlay ${isOpen ? 'auth-overlay--visible' : ''}`}
-        onClick={onClose}
+        onClick={handleClose}
       />
 
       <aside className={`auth-sidebar ${isOpen ? 'auth-sidebar--open' : ''}`}>
 
-        {/* Header */}
         <div className="auth-sidebar__header">
           <h2 className="auth-sidebar__title">
             {modo === 'login' ? 'ENTRAR' : 'CRIAR CONTA'}
           </h2>
-          <button className="auth-sidebar__close" onClick={onClose}>
+          <button className="auth-sidebar__close" onClick={handleClose}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <line x1="18" y1="6" x2="6" y2="18" />
               <line x1="6" y1="6" x2="18" y2="18" />
@@ -74,7 +81,6 @@ export default function AuthSidebar({ isOpen, onClose }) {
 
         <div className="auth-sidebar__divider" />
 
-        {/* Tabs */}
         <div className="auth-sidebar__tabs">
           <button
             className={`auth-sidebar__tab ${modo === 'login' ? 'auth-sidebar__tab--active' : ''}`}
@@ -90,7 +96,6 @@ export default function AuthSidebar({ isOpen, onClose }) {
           </button>
         </div>
 
-        {/* Body */}
         <div className="auth-sidebar__body">
           <form className="auth-sidebar__form" onSubmit={handleSubmit}>
 

@@ -200,8 +200,8 @@
 
 .search-card__badge {
   position: absolute;
-  bottom: 72px;
-  left: 10px;
+  bottom: 8px;
+  left: 8px;
   background: var(--color-primary);
   color: #fff;
   font-family: var(--font-body);
@@ -222,6 +222,7 @@
   aspect-ratio: 3 / 4;
   overflow: hidden;
   background: var(--color-bg-bar);
+  position: relative;
 }
 
 .search-card__img {

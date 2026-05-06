@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import { useWishlist } from '../../context/WishlistContext'
 import './WishlistBtn.css'
@@ -5,6 +6,7 @@ import './WishlistBtn.css'
 export default function WishlistBtn({ item, onLoginRequired }) {
   const { user } = useAuth()
   const { estaNA, toggle } = useWishlist()
+  const [pop, setPop] = useState(false)
 
   const ativo = estaNA(item._id)
 
@@ -12,11 +14,13 @@ export default function WishlistBtn({ item, onLoginRequired }) {
     e.stopPropagation()
     if (!user) { onLoginRequired?.(); return }
     toggle(item)
+    setPop(true)
+    setTimeout(() => setPop(false), 400)
   }
 
   return (
     <button
-      className={`wishlist-btn ${ativo ? 'wishlist-btn--active' : ''}`}
+      className={`wishlist-btn ${ativo ? 'wishlist-btn--active' : ''} ${pop ? 'wishlist-btn--pop' : ''}`}
       onClick={handleClick}
       title={ativo ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
     >

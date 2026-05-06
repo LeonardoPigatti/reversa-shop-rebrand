@@ -38,3 +38,30 @@
   font-size: 11px;
   letter-spacing: 0.05em;
 }
+
+/* Cole isso no seu AnnouncementBar.css */
+
+/* Primeiro ícone (email/label) — parado */
+.announcement-bar__social-link:nth-child(1) {
+  animation: none;
+}
+
+/* Os demais dançam um de cada vez, devagar */
+.announcement-bar__social-link:nth-child(2)  { animation: conga 2.8s ease-in-out infinite; animation-delay: 0.0s;  }
+.announcement-bar__social-link:nth-child(3)  { animation: conga 2.8s ease-in-out infinite; animation-delay: 0.4s;  }
+.announcement-bar__social-link:nth-child(4)  { animation: conga 2.8s ease-in-out infinite; animation-delay: 0.8s;  }
+.announcement-bar__social-link:nth-child(5)  { animation: conga 2.8s ease-in-out infinite; animation-delay: 1.2s;  }
+.announcement-bar__social-link:nth-child(6)  { animation: conga 2.8s ease-in-out infinite; animation-delay: 1.6s;  }
+.announcement-bar__social-link:nth-child(7)  { animation: conga 2.8s ease-in-out infinite; animation-delay: 2.0s;  }
+.announcement-bar__social-link:nth-child(8)  { animation: conga 2.8s ease-in-out infinite; animation-delay: 2.4s;  }
+.announcement-bar__social-link:nth-child(9)  { animation: conga 2.8s ease-in-out infinite; animation-delay: 2.8s;  }
+.announcement-bar__social-link:nth-child(10) { animation: conga 2.8s ease-in-out infinite; animation-delay: 3.2s;  }
+
+@keyframes conga {
+  0%    { transform: translateY(0)    rotate(0deg);   }
+  10%   { transform: translateY(-6px) rotate(-10deg); }
+  20%   { transform: translateY(-4px) rotate(8deg);   }
+  30%   { transform: translateY(-7px) rotate(-6deg);  }
+  40%   { transform: translateY(0)    rotate(0deg);   }
+  100%  { transform: translateY(0)    rotate(0deg);   }
+}

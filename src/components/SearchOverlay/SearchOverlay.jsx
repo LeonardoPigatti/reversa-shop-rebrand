@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import ProductDialog from '../ProductDialog/ProductDialog'
+import WishlistBtn from '../WishlistBtn/WishlistBtn'
 import './SearchOverlay.css'
 
 function formatPrice(value) {
@@ -12,8 +13,9 @@ function SearchCard({ item, onClick }) {
 
   return (
     <div className="search-card" onClick={onClick} role="button" tabIndex={0}>
-      {item.oferta && <span className="search-card__badge">OFERTA</span>}
+      <WishlistBtn item={item} />
       <div className="search-card__img-wrap">
+        {item.oferta && <span className="search-card__badge">OFERTA</span>}
         <img
           src={item.imagem || `https://placehold.co/200x260/1a0020/ff00aa?text=${encodeURIComponent(item.nome)}`}
           alt={item.nome}

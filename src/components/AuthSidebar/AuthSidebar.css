@@ -5,6 +5,7 @@
   background: rgba(0, 0, 0, 0.65);
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transition: opacity 0.3s ease, visibility 0.3s ease;
   z-index: 999;
 }
@@ -12,7 +13,10 @@
 .auth-overlay--visible {
   opacity: 1;
   visibility: visible;
+  pointer-events: all;
 }
+
+
 
 /* Sidebar */
 .auth-sidebar {
@@ -221,4 +225,23 @@ select.auth-sidebar__input {
   cursor: pointer;
   text-decoration: underline;
   padding: 0;
+}
+
+/* Cole isso no começo do AuthSidebar.css substituindo as regras do overlay */
+
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 999;
+}
+
+.auth-overlay--visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
 }
