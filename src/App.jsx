@@ -67,9 +67,9 @@ export default function App() {
                     textShadow={true}
                   />
                   <ProductGrid onlyOfertas carousel />
-                  <ProductGrid recentes carousel />
                   <StoreLocator />
                   <MarqueeStrip />
+                  <ProductGrid recentes carousel />
                 </>
               )}
             </main>

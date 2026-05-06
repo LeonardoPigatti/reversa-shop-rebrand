@@ -144,3 +144,155 @@
 }
 
 .todos-page__search-clear:hover { color: var(--color-primary); }
+
+/* ── Ver mais ── */
+.todos-page__vermais {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.todos-page__vermais-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 48px;
+  background: transparent;
+  border: 1px solid var(--color-primary);
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+
+.todos-page__vermais-btn:hover {
+  background: var(--color-primary);
+  box-shadow: 0 0 20px rgba(255, 0, 170, 0.4);
+}
+
+.todos-page__vermais-count {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: #888;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+}
+
+.todos-page__vermais-btn:hover .todos-page__vermais-count {
+  color: rgba(255,255,255,0.7);
+}
+
+/* ── Toolbar (busca + layout) ── */
+.todos-page__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.25rem;
+}
+
+.todos-page__toolbar .todos-page__search {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.todos-page__layout-btns {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.todos-page__layout-btn {
+  width: 36px;
+  height: 36px;
+  background: #0a000f;
+  border: 1px solid #222;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.todos-page__layout-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.todos-page__layout-btn--active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(255, 0, 170, 0.3);
+}
+
+/* ── Layout coluna única (card grande) ── */
+.product-grid__items--list {
+  grid-template-columns: 1fr !important;
+  gap: 1.5rem;
+}
+
+.product-card--list {
+  max-width: 320px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.product-card--list .product-card__img-wrap {
+  aspect-ratio: 3 / 4;
+}
+
+.product-card--list .product-card__name {
+  font-size: 1.1rem;
+}
+
+.product-card--list .product-card__price {
+  font-size: 1.4rem;
+}
+
+.product-card--list .product-card__installments,
+.product-card--list .product-card__pix {
+  font-size: 0.85rem;
+}
+
+/* ── Animação de arrastar e reposicionar ── */
+
+/* Modo GRID — cards vêm de baixo e se encaixam */
+.product-grid__items:not(.product-grid__items--list) .product-card {
+  animation: snapToGrid 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes snapToGrid {
+  0%   { opacity: 0; transform: scale(1.15) translateY(40px) rotate(2deg); }
+  60%  { opacity: 1; transform: scale(0.97) translateY(-4px) rotate(-0.5deg); }
+  100% { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); }
+}
+
+/* Modo LISTA — cards se contraem, vão para o centro e crescem */
+.product-grid__items--list .product-card {
+  animation: snapToList 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes snapToList {
+  0%   { opacity: 0; transform: scale(0.6) translateX(-60px) rotate(-3deg); }
+  50%  { opacity: 1; transform: scale(1.08) translateX(6px) rotate(0.5deg); }
+  100% { opacity: 1; transform: scale(1) translateX(0) rotate(0deg); }
+}
+
+/* Delays em cascata — cada card chega depois do anterior */
+.product-grid__items .product-card:nth-child(1)   { animation-delay: 0.00s; }
+.product-grid__items .product-card:nth-child(2)   { animation-delay: 0.05s; }
+.product-grid__items .product-card:nth-child(3)   { animation-delay: 0.10s; }
+.product-grid__items .product-card:nth-child(4)   { animation-delay: 0.15s; }
+.product-grid__items .product-card:nth-child(5)   { animation-delay: 0.20s; }
+.product-grid__items .product-card:nth-child(6)   { animation-delay: 0.25s; }
+.product-grid__items .product-card:nth-child(7)   { animation-delay: 0.30s; }
+.product-grid__items .product-card:nth-child(8)   { animation-delay: 0.35s; }
+.product-grid__items .product-card:nth-child(9)   { animation-delay: 0.40s; }
+.product-grid__items .product-card:nth-child(10)  { animation-delay: 0.45s; }
+.product-grid__items .product-card:nth-child(11)  { animation-delay: 0.50s; }
+.product-grid__items .product-card:nth-child(12)  { animation-delay: 0.55s; }
+.product-grid__items .product-card:nth-child(n+13){ animation-delay: 0.60s; }

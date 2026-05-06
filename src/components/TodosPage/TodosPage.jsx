@@ -33,6 +33,7 @@ export default function TodosPage({ title = 'TODOS OS PRODUTOS', filter = {} }) 
   const [selectedItem, setSelectedItem] = useState(null)
   const [filtros, setFiltros] = useState(FILTROS_INICIAIS)
   const [busca, setBusca] = useState('')
+  const [layout, setLayout] = useState('grid') // 'grid' | 'list'
   const [visivelCount, setVisivelCount] = useState(18) // 3 fileiras x 6 colunas
 
   useEffect(() => {
@@ -97,29 +98,55 @@ export default function TodosPage({ title = 'TODOS OS PRODUTOS', filter = {} }) 
           </span>
         </div>
 
-        <div className="todos-page__search">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-          </svg>
-          <input
-            className="todos-page__search-input"
-            placeholder="Buscar nesta página..."
-            value={busca}
-            onChange={(e) => setBusca(e.target.value)}
-          />
-          {busca && (
-            <button className="todos-page__search-clear" onClick={() => setBusca('')}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        <div className="todos-page__toolbar">
+          <div className="todos-page__search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+            </svg>
+            <input
+              className="todos-page__search-input"
+              placeholder="Buscar nesta página..."
+              value={busca}
+              onChange={(e) => setBusca(e.target.value)}
+            />
+            {busca && (
+              <button className="todos-page__search-clear" onClick={() => setBusca('')}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </button>
+            )}
+          </div>
+
+          <div className="todos-page__layout-btns">
+            <button
+              className={`todos-page__layout-btn ${layout === 'grid' ? 'todos-page__layout-btn--active' : ''}`}
+              onClick={() => setLayout('grid')}
+              title="Grade"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
               </svg>
             </button>
-          )}
+            <button
+              className={`todos-page__layout-btn ${layout === 'list' ? 'todos-page__layout-btn--active' : ''}`}
+              onClick={() => setLayout('list')}
+              title="Lista"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <rect x="3" y="4" width="18" height="4" rx="1"/>
+                <rect x="3" y="10" width="18" height="4" rx="1"/>
+                <rect x="3" y="16" width="18" height="4" rx="1"/>
+              </svg>
+            </button>
+          </div>
         </div>
 
         {itensFiltrados.length === 0 ? (
           <p className="todos-page__vazio">Nenhum produto encontrado com esses filtros.</p>
         ) : (
-          <div className="product-grid__items">
+          <div key={layout} className={`product-grid__items ${layout === 'list' ? 'product-grid__items--list' : ''}`}>
             {itensFiltrados.slice(0, visivelCount).map((item) => {
               const installments = 6
               const installmentValue = item.preco / installments
@@ -129,7 +156,7 @@ export default function TodosPage({ title = 'TODOS OS PRODUTOS', filter = {} }) 
               return (
                 <div
                   key={item._id}
-                  className="product-card"
+                  className={`product-card ${layout === 'list' ? 'product-card--list' : ''}`}
                   onClick={() => setSelectedItem(item)}
                   role="button"
                   tabIndex={0}

@@ -11,7 +11,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  cursor: grab;
+  user-select: none;
   filter: drop-shadow(0 0 8px rgba(255, 0, 170, 0.4));
   animation: batFloat 4s ease-in-out infinite;
   transition: filter 0.3s ease;
@@ -287,4 +288,8 @@
 .batchat__send:hover {
   background: var(--color-neon);
   box-shadow: 0 0 12px rgba(255, 0, 170, 0.5);
+}
+
+.batchat__bat-btn:active {
+  cursor: grabbing;
 }

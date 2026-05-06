@@ -134,8 +134,9 @@ export default function Footer() {
 
       {/* Bottom */}
       <div className="footer__bottom">
-        <p>MIDNIGHT QUEENS CLUB Comércio Ltda. | CNPJ: 19.517.809/0001-13 © 2013-2025 - Todos Direitos Reservados - Av. São João, 439. Loja 280. CEP 01035-001. São Paulo - SP - Brasil. Telefone Whatsapp (11) 91861-7964. falecom@lojamidnight</p>
-      </div>
+<p>
+MIDNIGHT QUEENS CLUB Comércio Ltda. | CNPJ: 00.000.000/0001-00 © 2013-2025 - Todos Direitos Reservados - Rua das Sombras, 666. Loja 13. CEP 00000-000. São Paulo - SP - Brasil. Telefone Whatsapp (11) 90000-0000. falecom@lojamidnight
+</p>      </div>
 
     </footer>
   )

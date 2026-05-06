@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './BatChat.css'
 
 const BAT_RESPONSES = [
@@ -27,6 +27,35 @@ export default function BatChat() {
   ])
   const [input, setInput] = useState('')
   const [typing, setTyping] = useState(false)
+
+  // Drag
+  const [pos, setPos] = useState({ x: null, y: null })
+  const dragging = useRef(false)
+  const dragOffset = useRef({ x: 0, y: 0 })
+  const batRef = useRef(null)
+
+  const handleMouseDown = (e) => {
+    if (open) return
+    dragging.current = true
+    dragOffset.current = {
+      x: e.clientX - (pos.x ?? window.innerWidth - 120),
+      y: e.clientY - (pos.y ?? window.innerHeight - 110),
+    }
+    e.preventDefault()
+  }
+
+  useEffect(() => {
+    const onMove = (e) => {
+      if (!dragging.current) return
+      const newX = e.clientX - dragOffset.current.x
+      const newY = e.clientY - dragOffset.current.y
+      setPos({ x: Math.max(0, Math.min(newX, window.innerWidth - 130)), y: Math.max(0, Math.min(newY, window.innerHeight - 100)) })
+    }
+    const onUp = () => { dragging.current = false }
+    window.addEventListener('mousemove', onMove)
+    window.addEventListener('mouseup', onUp)
+    return () => { window.removeEventListener('mousemove', onMove); window.removeEventListener('mouseup', onUp) }
+  }, [])
 
   const handleOpen = () => {
     setAcrobacia(true)
@@ -59,7 +88,7 @@ export default function BatChat() {
     <>
       {/* Chat window */}
       {open && (
-        <div className="batchat__window">
+        <div className="batchat__window" style={pos.x !== null ? { left: pos.x - 270, top: Math.max(10, pos.y - 520), right: 'auto', bottom: 'auto' } : {}}>
           <div className="batchat__header">
             <div className="batchat__header-info">
               <BatSVG size={32} animate />
@@ -121,9 +150,12 @@ export default function BatChat() {
       {/* Botão morcego */}
       {!open && (
         <button
+          ref={batRef}
           className={`batchat__bat-btn ${acrobacia ? 'batchat__bat-btn--flip' : ''}`}
           onClick={handleOpen}
+          onMouseDown={handleMouseDown}
           title="Falar com o Bat"
+          style={pos.x !== null ? { left: pos.x, top: pos.y, right: 'auto', bottom: 'auto' } : {}}
         >
           <BatSVG size={100} animate={!acrobacia} />
         </button>
